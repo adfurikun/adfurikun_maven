@@ -14,12 +14,38 @@
       </snapshots>
     </repository>
   </repositories>
-  <dependencies>
-    <dependency>
-      <groupId>${groupId}</groupId>
-      <artifactId>${artifactId}</artifactId>
-      <version>${version}</version>
-      <type>${type}</type>
-    </dependency>
-  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <configuration>
+          <artifactItems>
+            <artifactItem>
+              <groupId>${groupId}</groupId>
+              <artifactId>${artifactId}</artifactId>
+              <version>${version}</version>
+              <type>${type}</type>
+              <overWrite>true</overWrite>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <destFileName>${artifactId}-${version}.${type}</destFileName>
+            </artifactItem>
+            <artifactItem>
+              <groupId>${groupId}</groupId>
+              <artifactId>${artifactId}</artifactId>
+              <version>${version}</version>
+              <type>pom</type>
+              <overWrite>true</overWrite>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <destFileName>${artifactId}-${version}.pom</destFileName>
+            </artifactItem>
+          </artifactItems>
+          <outputDirectory>${project.build.directory}/wars</outputDirectory>
+          <overWriteReleases>false</overWriteReleases>
+          <overWriteSnapshots>true</overWriteSnapshots>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
