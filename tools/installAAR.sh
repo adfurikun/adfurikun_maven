@@ -2,7 +2,7 @@
 
 GROUP=jp.adfully
 ARTIFACT=adfurikunsdk
-VERSION=3.2.0-SNAPSHOT
+VERSION=3.1.1
 PACKAGING=aar
 
 mvn clean dependency:copy -DgroupId=$GROUP -DartifactId=$ARTIFACT -Dversion=$VERSION -Dtype=$PACKAGING -U
@@ -14,4 +14,6 @@ mvn install:install-file -DgroupId=$GROUP -DartifactId=$ARTIFACT -Dversion=$VERS
 -DlocalRepositoryPath=../ \
 -DcreateChecksum=true
 
+md5 target/$ARTIFACT-$VERSION.$PACKAGING
 rm -r ./target
+
